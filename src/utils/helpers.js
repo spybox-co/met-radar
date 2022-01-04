@@ -1,4 +1,4 @@
-const OWAPIKEY = process.env.REACT_APP_OPEN_WEATHER_APIKEY;
+const OWAPIKEY =  process.env.REACT_APP_OPEN_WEATHER_APIKEY;
 
 const MetOfficeAPI = {
   api_key: process.env.REACT_APP_MET_OFFICE_APIKEY,
@@ -39,14 +39,14 @@ export const openWeatherData = (position) => {
   const lat = position.lat || 51;
   const lng = position.lat || 0;
 
-  const coordinates = `forecast?lat=${lat}&lon=${lng}&APPID=${OWAPIKEY}`;
+  const coordinates = `lat=${lat}&lon=${lng}`;
 
-  return fetch(`https://api.openweathermap.org/data/2.5/${coordinates}&units=metric`)
+  return fetch(`https://api.openweathermap.org/data/2.5/forecast?${coordinates}&appid=${OWAPIKEY}&units=metric`)
           .then(res => res.json())
           .then(data => {
             const result = data.list;
-            console.log('RESPONSE:', result);
-            // return result;
+            // console.log('RESPONSE:', result);
+            return result;
           })
           .catch(error => console.log('ERROR:', error));
 }
@@ -65,6 +65,9 @@ export const getMetOfficeData = (position) => {
 
 };
 
+export const locationAPI = {
+  GEOLOCDB: `https://www.geolocation-db.com/json/`
+}
 
 export const toCelsiusTemp = (value) => {
   return value - 273;
