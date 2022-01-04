@@ -42,13 +42,13 @@ export const openWeatherData = (position) => {
   const coordinates = `forecast?lat=${lat}&lon=${lng}&APPID=${OWAPIKEY}`;
 
   return fetch(`https://api.openweathermap.org/data/2.5/${coordinates}&units=metric`)
-          .then((response) => response.json())
-          .then((data) => {
+          .then(res => res.json())
+          .then(data => {
             const result = data.list;
             console.log('RESPONSE:', result);
             // return result;
           })
-          .catch((error) => console.log('ERROR:', error));
+          .catch(error => console.log('ERROR:', error));
 }
 
 export const getMetOfficeData = (position) => {
@@ -61,7 +61,7 @@ export const getMetOfficeData = (position) => {
   return fetch(`${request.url}?includeLocationName=true${coordinates}`, request.options)
           .then(res => res.json())
           .then(data => data)
-          .catch((error) => console.log('ERROR:', error));
+          .catch(error => console.log('ERROR:', error));
 
 };
 

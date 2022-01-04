@@ -5,8 +5,6 @@ import { getMetOfficeData } from './utils/helpers';
 import './App.scss';
 
 
-console.log(process.env)
-
 
 function App() {
 
@@ -33,12 +31,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-
+        {state && (<p>{state.features.properties.location.name}</p>)}
       </header>
 
       {state && (
         <>
-          <p>{state.features.properties.location.name}</p>
           <code>{`${JSON.stringify(state.features)}`}</code>
         </>
       )}
